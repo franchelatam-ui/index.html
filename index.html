@@ -19,7 +19,7 @@ body {
 /* PAGES */
 .page {
     display: none;
-    padding: 60px 20px;
+    padding: 50px 20px;
     max-width: 900px;
     margin: auto;
 }
@@ -71,6 +71,19 @@ p {
     background: #d46a9a;
     color: white;
 }
+
+/* GALLERY */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.gallery img {
+    width: 100%;
+    border-radius: 12px;
+}
 </style>
 </head>
 
@@ -84,12 +97,13 @@ p {
 
         <p>
             Hey Juno…<br><br>
-            Your birthday is coming on <b>June 6, 2026</b> 💖<br><br>
-            I made something for our 8PM date…
+            June 6, 2026 💖<br>
+            I made something for our 8PM date.
         </p>
 
         <button class="btn accept" onclick="acceptInvite()">💌 I accept the invitation</button>
 
+        <!-- 🎵 MUSIC BUTTON (FIRST PAGE) -->
         <button class="btn" onclick="playMusic()">🎵 Play our music</button>
 
     </div>
@@ -105,7 +119,7 @@ p {
             You said yes 😌<br><br>
             I’m really happy, daddy.<br>
             I can’t wait to see you.<br><br>
-            Now choose what you want to eat 🍽️
+            Now choose your food 🍽️
         </p>
 
         <button class="btn" onclick="goTo('page3')">Continue</button>
@@ -132,11 +146,15 @@ p {
 <div id="page4" class="page">
     <div class="card">
 
-        <h1>🎟️ Date Confirmed</h1>
+        <h1>📸 Memory Gallery</h1>
 
-        <p id="finalText"></p>
-
-        <button class="btn" onclick="openSpotify()">🎵 Open our song on Spotify</button>
+        <div class="gallery">
+            <img src="207300e0-a7eb-4654-aa1d-e7513e7191a9.jpg">
+            <img src="image_2026-05-28_044953987.png">
+            <img src="image_2026-05-28_045303775.png">
+            <img src="image_2026-05-28_045322390.png">
+            <img src="image_2026-05-28_045328572.png">
+        </div>
 
     </div>
 </div>
@@ -147,12 +165,7 @@ function acceptInvite() {
     goTo('page2');
 }
 
-/* 🎵 SPOTIFY LINK */
-function openSpotify() {
-    window.open("https://open.spotify.com/track/77uHMAuHcP2VKDvF9LXtGt?si=aa805888be4c4958", "_blank");
-}
-
-/* fallback music button (still Spotify) */
+/* 🎵 MUSIC BUTTON */
 function playMusic() {
     window.open("https://open.spotify.com/track/77uHMAuHcP2VKDvF9LXtGt?si=aa805888be4c4958", "_blank");
 }
@@ -167,17 +180,7 @@ function goTo(page) {
 }
 
 function choose(food) {
-    document.getElementById("finalText").innerHTML = `
-You chose <b>${food}</b> 🍽️<br><br>
-
-🕗 Time: 8:00 PM<br>
-👔 Dress code: pogi<br><br>
-
-I can’t wait to see you, Juno 💖<br>
-I love you.<br><br>
-
-Ang galing-galing mo… daddy 😌
-`;
+    alert("You chose " + food + " 💖");
 
     goTo("page4");
 }
