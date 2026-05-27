@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Juno Date Sim 💌</title>
+<title>Juno Birthday Date 💌</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet">
 
@@ -22,15 +22,13 @@ body {
     position: fixed;
     top: -10px;
     color: #ff6fae;
-    font-size: 20px;
+    font-size: 18px;
     animation: fall linear forwards;
     opacity: 0.7;
 }
 
 @keyframes fall {
-    to {
-        transform: translateY(110vh);
-    }
+    to { transform: translateY(110vh); }
 }
 
 /* PAGES */
@@ -78,22 +76,43 @@ body {
     padding: 20px;
     border-radius: 15px;
     margin-top: 15px;
-    animation: pop 0.6s ease;
 }
 
-@keyframes pop {
-    from {transform: scale(0.8); opacity: 0;}
-    to {transform: scale(1); opacity: 1;}
-}
-
-/* TYPE TEXT */
+/* TYPE */
 #typeText {
-    min-height: 60px;
+    min-height: 80px;
+}
+
+/* GALLERY */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.gallery img {
+    width: 100%;
+    border-radius: 12px;
 }
 </style>
 </head>
 
 <body>
+
+<!-- 🎀 HEARTS -->
+<script>
+function hearts(){
+    const h = document.createElement("div");
+    h.classList.add("heart");
+    h.innerHTML = "💖";
+    h.style.left = Math.random()*100+"vw";
+    h.style.animationDuration = (2+Math.random()*3)+"s";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),5000);
+}
+setInterval(hearts,300);
+</script>
 
 <!-- PAGE 1 -->
 <div id="page1" class="page active">
@@ -102,11 +121,15 @@ body {
         <h1>💌 A Special Invitation</h1>
 
         <p>
-            Hey Daddy…<br>
-            June 6, 2026 💖
+            Hey Daddy…<br><br>
+            June 6, 2026 💖<br>
+            I made something for your special day.
         </p>
 
-        <button class="btn" onclick="startTyping()">💌 I accept the invitation</button>
+        <button class="btn" onclick="start()">💌 I accept the invitation</button>
+
+        <button class="btn" onclick="playMusic()">🎵 Play our music</button>
+
     </div>
 </div>
 
@@ -118,12 +141,28 @@ body {
 
         <p id="typeText"></p>
 
-        <button class="btn" onclick="goTo('page3')">Continue</button>
+        <button class="btn" onclick="go('page3')">Continue</button>
+
     </div>
 </div>
 
 <!-- PAGE 3 -->
 <div id="page3" class="page">
+    <div class="card">
+
+        <h1>🍽️ Choose your food</h1>
+
+        <button class="btn" onclick="choose('Ramen')">🍜 Ramen</button>
+        <button class="btn" onclick="choose('Burgers')">🍔 Burgers</button>
+        <button class="btn" onclick="choose('Chicken')">🍗 Chicken</button>
+        <button class="btn" onclick="choose('Pork')">🐷 Pork</button>
+        <button class="btn" onclick="choose('Beef')">🥩 Beef</button>
+
+    </div>
+</div>
+
+<!-- PAGE 4 -->
+<div id="page4" class="page">
     <div class="card">
 
         <h1>🎟️ Birthday Ticket</h1>
@@ -135,13 +174,13 @@ body {
             <p><b>Dress Code:</b> pogi</p>
         </div>
 
-        <button class="btn" onclick="goTo('page4')">Final Surprise</button>
+        <button class="btn" onclick="go('page5')">Final Surprise</button>
 
     </div>
 </div>
 
-<!-- PAGE 4 -->
-<div id="page4" class="page">
+<!-- PAGE 5 -->
+<div id="page5" class="page">
     <div class="card">
 
         <h1>💌 Ending</h1>
@@ -152,49 +191,59 @@ body {
             Ang galing-galing mo 😌
         </p>
 
+        <div class="gallery">
+            <img src="207300e0-a7eb-4654-aa1d-e7513e7191a9.jpg">
+            <img src="image_2026-05-28_044953987.png">
+            <img src="image_2026-05-28_045303775.png">
+            <img src="image_2026-05-28_045322390.png">
+        </div>
+
     </div>
 </div>
 
 <script>
 
-/* 🎀 HEARTS */
-function hearts() {
-    const heart = document.createElement("div");
-    heart.classList.add("heart");
-    heart.innerHTML = "💖";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.animationDuration = (2 + Math.random() * 3) + "s";
-    document.body.appendChild(heart);
-
-    setTimeout(() => heart.remove(), 5000);
-}
-setInterval(hearts, 300);
-
-/* 💌 PAGE SWITCH */
-function goTo(page) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+/* PAGE SWITCH */
+function go(page){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
     document.getElementById(page).classList.add('active');
 }
 
-/* ✍️ TYPE MESSAGE */
-function startTyping() {
-    goTo('page2');
+/* MUSIC */
+function playMusic(){
+    window.open("https://open.spotify.com/track/77uHMAuHcP2VKDvF9LXtGt?si=aa805888be4c4958","_blank");
+}
 
-    const text = "I’m really happy I get to spend this birthday with you daddy 💖 I hope you feel loved, relaxed, and special. I can’t wait for 8PM with you.";
-    
+/* START + TYPE */
+function start(){
+    go('page2');
+
+    const text =
+`You said yes 😌
+
+I love you daddy 💖
+I can’t wait to see you on your 32nd birthday.
+
+I’m really happy I get to spend this birthday with you.
+I hope you feel loved, relaxed, and special.`;
+
     let i = 0;
-    let speed = 40;
+    document.getElementById("typeText").innerHTML = "";
 
-    function type() {
-        if (i < text.length) {
+    function typing(){
+        if(i < text.length){
             document.getElementById("typeText").innerHTML += text.charAt(i);
             i++;
-            setTimeout(type, speed);
+            setTimeout(typing, 30);
         }
     }
+    typing();
+}
 
-    document.getElementById("typeText").innerHTML = "";
-    type();
+/* FOOD */
+function choose(food){
+    alert("You chose " + food + " 💖");
+    go('page4');
 }
 
 </script>
