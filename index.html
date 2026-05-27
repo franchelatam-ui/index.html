@@ -3,82 +3,91 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Juno’s Birthday Date 💌</title>
+<title>Juno Birthday Date 💌</title>
 
-<!-- ✨ GOOGLE FONT -->
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
 body {
+    margin: 0;
     font-family: 'Quicksand', sans-serif;
     background: #fff7fb;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    overflow: hidden;
     color: #333;
+    text-align: center;
 }
 
-/* SCENES */
-.scene {
+/* PAGES */
+.page {
     display: none;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: all 0.6s ease;
-    padding: 60px 20px;
-}
-
-.scene.active {
-    display: block;
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.container {
-    max-width: 520px;
+    padding: 50px 20px;
+    max-width: 900px;
     margin: auto;
 }
 
+.page.active {
+    display: block;
+}
+
+/* CARD */
+.card {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+/* TITLE */
 h1 {
-    font-weight: 600;
-    font-size: 28px;
     color: #d46a9a;
-    margin-bottom: 10px;
 }
 
-p {
-    font-size: 16px;
-    font-weight: 400;
-    color: #555;
-    line-height: 1.6;
-}
-
-/* BUTTONS (minimal look) */
-button {
-    background: transparent;
-    border: 1.5px solid #d46a9a;
+/* BIG PANEL BUTTONS */
+.panel-btn {
+    display: block;
+    width: 100%;
+    max-width: 320px;
+    margin: 12px auto;
+    padding: 18px;
+    font-size: 18px;
+    border-radius: 18px;
+    border: 2px solid #d46a9a;
+    background: white;
     color: #d46a9a;
-    padding: 10px 16px;
-    margin: 8px;
-    border-radius: 25px;
     cursor: pointer;
-    font-size: 15px;
-    font-weight: 500;
-    transition: all 0.3s ease;
+    transition: 0.3s;
 }
 
-button:hover {
+.panel-btn:hover {
     background: #d46a9a;
     color: white;
 }
 
-/* FINAL CARD */
-.box {
-    background: white;
-    padding: 25px;
-    border-radius: 18px;
+/* GALLERY */
+.gallery {
+    display: none;
     margin-top: 20px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.gallery img {
+    width: 100%;
+    border-radius: 12px;
+}
+
+/* TICKET */
+.ticket {
+    margin-top: 20px;
+    padding: 20px;
+    border: 2px dashed #d46a9a;
+    border-radius: 15px;
+}
+
+/* NO DODGE BUTTON */
+#noDodge {
+    position: relative;
+    border: 2px solid #999;
+    color: #999;
 }
 </style>
 </head>
@@ -89,76 +98,111 @@ button:hover {
 <div style="display:none;">
 <iframe 
 width="0" height="0"
-src="https://www.youtube.com/embed/YOUR_YOUTUBE_VIDEO_ID?autoplay=1&loop=1&playlist=YOUR_YOUTUBE_VIDEO_ID"
+src="https://www.youtube.com/embed/Jhd--CGc6w4?autoplay=1&loop=1&playlist=Jhd--CGc6w4"
 allow="autoplay">
 </iframe>
 </div>
 
-<!-- SCENE 1 -->
-<div id="scene1" class="scene active">
-    <div class="container">
+<!-- PAGE 1 -->
+<div id="page1" class="page active">
+    <div class="card">
         <h1>💌 Juno’s Birthday Date</h1>
+
         <p>
-            Hey Juno.<br><br>
-            You’re turning 32 on June 6, 2026.<br>
-            I planned something simple for you.
+            To: Juno<br>
+            June 6, 2026 — 32nd Birthday<br><br>
+            Choose your craving for your 8PM date 💕
         </p>
-        <button onclick="goTo('scene2')">Open Invitation</button>
+
+        <button class="panel-btn" onclick="choose('Ramen')">🍜 Ramen</button>
+        <button class="panel-btn" onclick="choose('Burgers')">🍔 Burgers</button>
+        <button class="panel-btn" onclick="choose('Chicken')">🍗 Chicken</button>
+        <button class="panel-btn" onclick="choose('Pork')">🐷 Pork</button>
+        <button class="panel-btn" onclick="choose('Beef')">🥩 Beef</button>
+
+        <!-- 💀 NO DODGE -->
+        <button id="noDodge" class="panel-btn" onclick="forceChoice()">❌ No Dodging Allowed</button>
     </div>
 </div>
 
-<!-- SCENE 2 -->
-<div id="scene2" class="scene">
-    <div class="container">
-        <h1>What do you feel like eating?</h1>
-        <p>Pick your birthday craving 🍽️</p>
+<!-- PAGE 2: GALLERY -->
+<div id="page2" class="page">
+    <div class="card">
+        <h1>📸 Memory Gallery Unlocked</h1>
+        <p>Because you said yes 💌</p>
 
-        <button onclick="chooseFood('Ramen')">🍜 Ramen</button>
-        <button onclick="chooseFood('Burgers')">🍔 Burgers</button>
-        <button onclick="chooseFood('Chicken')">🍗 Chicken</button>
-        <button onclick="chooseFood('Pork')">🐷 Pork</button>
-        <button onclick="chooseFood('Beef')">🥩 Beef</button>
+        <div class="gallery" id="gallery" style="display:grid;">
+            <img src="YOUR_IMAGE_1.jpg">
+            <img src="YOUR_IMAGE_2.jpg">
+            <img src="YOUR_IMAGE_3.jpg">
+            <img src="YOUR_IMAGE_4.jpg">
+        </div>
+
+        <button class="panel-btn" onclick="goTicket()">🎟️ View Birthday Pass</button>
     </div>
 </div>
 
-<!-- FINAL -->
-<div id="final" class="scene">
-    <div class="container box">
-        <h1>It’s a Date, Juno 💌</h1>
-        <p id="resultText"></p>
+<!-- PAGE 3 -->
+<div id="page3" class="page">
+    <div class="card">
+        <h1>🎟️ Birthday Date Pass</h1>
+
+        <div class="ticket">
+            <p><b>Name:</b> Juno</p>
+            <p><b>Date:</b> June 6, 2026</p>
+            <p><b>Time:</b> 8:00 PM</p>
+            <p><b>Dress Code:</b> pogi</p>
+        </div>
+
+        <p style="margin-top:15px;">
+            I can’t wait to see you 💌<br>
+            I love you, Juno<br><br>
+            Ang galing-galing mo… daddy 😌
+        </p>
     </div>
 </div>
 
 <script>
 
-function goTo(scene) {
-    changeScene(scene);
+function choose(food) {
+    document.getElementById("gallery").style.display = "grid";
+    switchPage("page2");
 }
 
-function changeScene(id) {
-    let scenes = document.querySelectorAll('.scene');
+function goTicket() {
+    switchPage("page3");
+}
 
-    scenes.forEach(s => s.classList.remove('active'));
+function switchPage(id) {
+    let pages = document.querySelectorAll('.page');
+    pages.forEach(p => p.classList.remove('active'));
 
     setTimeout(() => {
         document.getElementById(id).classList.add('active');
     }, 200);
 }
 
-function chooseFood(food) {
-    let text = `
-You picked <b>${food}</b> 🍽️<br><br>
+/* 💀 NO DODGING */
+function forceChoice() {
+    alert("No dodging allowed 😌");
 
-🕗 Time: 8:00 PM<br>
-👔 Dress code: pogi<br><br>
+    let btn = document.getElementById("noDodge");
 
-I’ll be waiting for you, Juno.<br>
-Don’t overthink it. Just come.
-`;
+    btn.style.position = "absolute";
 
-    document.getElementById("resultText").innerHTML = text;
+    document.onmousemove = function(e) {
+        btn.style.left = (e.pageX + 20) + "px";
+        btn.style.top = (e.pageY + 20) + "px";
+    };
 
-    changeScene("final");
+    setTimeout(() => {
+        document.onmousemove = null;
+
+        let choices = ["Ramen","Burgers","Chicken","Pork","Beef"];
+        let pick = choices[Math.floor(Math.random() * choices.length)];
+
+        choose(pick);
+    }, 4000);
 }
 
 </script>
