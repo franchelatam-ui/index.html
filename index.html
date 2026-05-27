@@ -67,11 +67,6 @@ p {
     color: white;
 }
 
-.accept {
-    background: #d46a9a;
-    color: white;
-}
-
 /* GALLERY */
 .gallery {
     display: grid;
@@ -98,13 +93,12 @@ p {
         <p>
             Hey Daddy…<br><br>
             June 6, 2026 💖<br>
-            I (your young and beautiful girlfriend) made something for your special day.
+            I made something for your special day.
         </p>
 
-        <button class="btn accept" onclick="acceptInvite()">💌 I accept the invitation</button>
+        <button class="btn" onclick="acceptInvite()">💌 I accept the invitation</button>
 
-        <!-- 🎵 MUSIC BUTTON (FIRST PAGE) -->
-        <button class="btn" onclick="playMusic()">🎵 Play our music on spotify</button>
+        <button class="btn" onclick="playMusic()">🎵 Play our music on Spotify</button>
 
     </div>
 </div>
@@ -116,10 +110,9 @@ p {
         <h1>💖 Message for you</h1>
 
         <p>
-            You said yes! 😌<br><br>
-            I love you daddy<br>
-            I can’t wait to see you on your 32nd Birthday.<br>
-            I’m really happy I get to spend this birthday with you.<br>
+            You said yes 😌<br><br>
+            I love you daddy 💕<br>
+            I can’t wait to see you on your 32nd birthday.<br><br>
             I hope you feel loved, relaxed, and special.<br><br>
             Now choose your food hehe 🍽️
         </p>
@@ -167,23 +160,21 @@ function acceptInvite() {
     goTo('page2');
 }
 
-/* 🎵 MUSIC BUTTON */
 function playMusic() {
     window.open("https://open.spotify.com/track/77uHMAuHcP2VKDvF9LXtGt?si=aa805888be4c4958", "_blank");
 }
 
+/* FIXED NAVIGATION (more stable) */
 function goTo(page) {
-    let pages = document.querySelectorAll('.page');
-    pages.forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.page').forEach(p => {
+        p.classList.remove('active');
+    });
 
-    setTimeout(() => {
-        document.getElementById(page).classList.add('active');
-    }, 200);
+    document.getElementById(page).classList.add('active');
 }
 
 function choose(food) {
     alert("You chose " + food + " 💖");
-
     goTo("page4");
 }
 
