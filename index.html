@@ -12,14 +12,14 @@ body {
     margin: 0;
     font-family: 'Quicksand', sans-serif;
     background: #fff7fb;
-    color: #333;
     text-align: center;
+    color: #333;
 }
 
 /* PAGES */
 .page {
     display: none;
-    padding: 50px 20px;
+    padding: 60px 20px;
     max-width: 900px;
     margin: auto;
 }
@@ -31,24 +31,29 @@ body {
 /* CARD */
 .card {
     background: white;
-    border-radius: 20px;
+    border-radius: 22px;
     padding: 30px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.05);
 }
 
-/* TITLE */
+/* TEXT */
 h1 {
     color: #d46a9a;
 }
 
-/* BIG PANEL BUTTONS */
-.panel-btn {
+p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* BUTTONS */
+.btn {
     display: block;
     width: 100%;
     max-width: 320px;
     margin: 12px auto;
-    padding: 18px;
-    font-size: 18px;
+    padding: 16px;
+    font-size: 17px;
     border-radius: 18px;
     border: 2px solid #d46a9a;
     background: white;
@@ -57,152 +62,124 @@ h1 {
     transition: 0.3s;
 }
 
-.panel-btn:hover {
+.btn:hover {
     background: #d46a9a;
     color: white;
 }
 
-/* GALLERY */
-.gallery {
-    display: none;
-    margin-top: 20px;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-}
-
-.gallery img {
-    width: 100%;
-    border-radius: 12px;
-}
-
-/* TICKET */
-.ticket {
-    margin-top: 20px;
-    padding: 20px;
-    border: 2px dashed #d46a9a;
-    border-radius: 15px;
-}
-
-/* NO DODGE BUTTON */
-#noDodge {
-    position: relative;
-    border: 2px solid #999;
-    color: #999;
+.accept {
+    background: #d46a9a;
+    color: white;
 }
 </style>
 </head>
 
 <body>
 
-<!-- 🎵 MUSIC -->
-<div style="display:none;">
-<iframe 
-width="0" height="0"
-src="https://www.youtube.com/embed/Jhd--CGc6w4?autoplay=1&loop=1&playlist=Jhd--CGc6w4"
-allow="autoplay">
-</iframe>
-</div>
-
 <!-- PAGE 1 -->
 <div id="page1" class="page active">
     <div class="card">
-        <h1>💌 Juno’s Birthday Date</h1>
+
+        <h1>💌 A Special Invitation</h1>
 
         <p>
-            To: Juno<br>
-            June 6, 2026 — 32nd Birthday<br><br>
-            Choose your craving for your 8PM date 💕
+            Hey Juno…<br><br>
+            Your birthday is coming on <b>June 6, 2026</b> 💖<br><br>
+            I made something for our 8PM date…
         </p>
 
-        <button class="panel-btn" onclick="choose('Ramen')">🍜 Ramen</button>
-        <button class="panel-btn" onclick="choose('Burgers')">🍔 Burgers</button>
-        <button class="panel-btn" onclick="choose('Chicken')">🍗 Chicken</button>
-        <button class="panel-btn" onclick="choose('Pork')">🐷 Pork</button>
-        <button class="panel-btn" onclick="choose('Beef')">🥩 Beef</button>
+        <button class="btn accept" onclick="acceptInvite()">💌 I accept the invitation</button>
 
-        <!-- 💀 NO DODGE -->
-        <button id="noDodge" class="panel-btn" onclick="forceChoice()">❌ No Dodging Allowed</button>
+        <button class="btn" onclick="playMusic()">🎵 Play our music</button>
+
     </div>
 </div>
 
-<!-- PAGE 2: GALLERY -->
+<!-- PAGE 2 -->
 <div id="page2" class="page">
     <div class="card">
-        <h1>📸 Memory Gallery Unlocked</h1>
-        <p>Because you said yes 💌</p>
 
-        <div class="gallery" id="gallery" style="display:grid;">
-            <img src="YOUR_IMAGE_1.jpg">
-            <img src="YOUR_IMAGE_2.jpg">
-            <img src="YOUR_IMAGE_3.jpg">
-            <img src="YOUR_IMAGE_4.jpg">
-        </div>
+        <h1>💖 Message for you</h1>
 
-        <button class="panel-btn" onclick="goTicket()">🎟️ View Birthday Pass</button>
+        <p>
+            You said yes 😌<br><br>
+            I’m really happy, daddy.<br>
+            I can’t wait to see you.<br><br>
+            Now choose what you want to eat 🍽️
+        </p>
+
+        <button class="btn" onclick="goTo('page3')">Continue</button>
+
     </div>
 </div>
 
 <!-- PAGE 3 -->
 <div id="page3" class="page">
     <div class="card">
-        <h1>🎟️ Birthday Date Pass</h1>
 
-        <div class="ticket">
-            <p><b>Name:</b> Juno</p>
-            <p><b>Date:</b> June 6, 2026</p>
-            <p><b>Time:</b> 8:00 PM</p>
-            <p><b>Dress Code:</b> pogi</p>
-        </div>
+        <h1>🍽️ Choose your food</h1>
 
-        <p style="margin-top:15px;">
-            I can’t wait to see you 💌<br>
-            I love you, Juno<br><br>
-            Ang galing-galing mo… daddy 😌
-        </p>
+        <button class="btn" onclick="choose('Ramen')">🍜 Ramen</button>
+        <button class="btn" onclick="choose('Burgers')">🍔 Burgers</button>
+        <button class="btn" onclick="choose('Chicken')">🍗 Chicken</button>
+        <button class="btn" onclick="choose('Pork')">🐷 Pork</button>
+        <button class="btn" onclick="choose('Beef')">🥩 Beef</button>
+
+    </div>
+</div>
+
+<!-- PAGE 4 -->
+<div id="page4" class="page">
+    <div class="card">
+
+        <h1>🎟️ Date Confirmed</h1>
+
+        <p id="finalText"></p>
+
+        <button class="btn" onclick="openSpotify()">🎵 Open our song on Spotify</button>
+
     </div>
 </div>
 
 <script>
 
-function choose(food) {
-    document.getElementById("gallery").style.display = "grid";
-    switchPage("page2");
+function acceptInvite() {
+    goTo('page2');
 }
 
-function goTicket() {
-    switchPage("page3");
+/* 🎵 SPOTIFY LINK */
+function openSpotify() {
+    window.open("https://open.spotify.com/track/77uHMAuHcP2VKDvF9LXtGt?si=aa805888be4c4958", "_blank");
 }
 
-function switchPage(id) {
+/* fallback music button (still Spotify) */
+function playMusic() {
+    window.open("https://open.spotify.com/track/77uHMAuHcP2VKDvF9LXtGt?si=aa805888be4c4958", "_blank");
+}
+
+function goTo(page) {
     let pages = document.querySelectorAll('.page');
     pages.forEach(p => p.classList.remove('active'));
 
     setTimeout(() => {
-        document.getElementById(id).classList.add('active');
+        document.getElementById(page).classList.add('active');
     }, 200);
 }
 
-/* 💀 NO DODGING */
-function forceChoice() {
-    alert("No dodging allowed 😌");
+function choose(food) {
+    document.getElementById("finalText").innerHTML = `
+You chose <b>${food}</b> 🍽️<br><br>
 
-    let btn = document.getElementById("noDodge");
+🕗 Time: 8:00 PM<br>
+👔 Dress code: pogi<br><br>
 
-    btn.style.position = "absolute";
+I can’t wait to see you, Juno 💖<br>
+I love you.<br><br>
 
-    document.onmousemove = function(e) {
-        btn.style.left = (e.pageX + 20) + "px";
-        btn.style.top = (e.pageY + 20) + "px";
-    };
+Ang galing-galing mo… daddy 😌
+`;
 
-    setTimeout(() => {
-        document.onmousemove = null;
-
-        let choices = ["Ramen","Burgers","Chicken","Pork","Beef"];
-        let pick = choices[Math.floor(Math.random() * choices.length)];
-
-        choose(pick);
-    }, 4000);
+    goTo("page4");
 }
 
 </script>
