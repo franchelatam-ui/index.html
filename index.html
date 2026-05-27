@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Juno’s Birthday Date 💌</title>
+
+<!-- ✨ GOOGLE FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+    font-family: 'Quicksand', sans-serif;
+    background: #fff7fb;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    overflow: hidden;
+    color: #333;
+}
+
+/* SCENES */
+.scene {
+    display: none;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.6s ease;
+    padding: 60px 20px;
+}
+
+.scene.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.container {
+    max-width: 520px;
+    margin: auto;
+}
+
+h1 {
+    font-weight: 600;
+    font-size: 28px;
+    color: #d46a9a;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 16px;
+    font-weight: 400;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* BUTTONS (minimal look) */
+button {
+    background: transparent;
+    border: 1.5px solid #d46a9a;
+    color: #d46a9a;
+    padding: 10px 16px;
+    margin: 8px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: #d46a9a;
+    color: white;
+}
+
+/* FINAL CARD */
+.box {
+    background: white;
+    padding: 25px;
+    border-radius: 18px;
+    margin-top: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎵 MUSIC -->
+<div style="display:none;">
+<iframe 
+width="0" height="0"
+src="https://www.youtube.com/embed/YOUR_YOUTUBE_VIDEO_ID?autoplay=1&loop=1&playlist=YOUR_YOUTUBE_VIDEO_ID"
+allow="autoplay">
+</iframe>
+</div>
+
+<!-- SCENE 1 -->
+<div id="scene1" class="scene active">
+    <div class="container">
+        <h1>💌 Juno’s Birthday Date</h1>
+        <p>
+            Hey Juno.<br><br>
+            You’re turning 32 on June 6, 2026.<br>
+            I planned something simple for you.
+        </p>
+        <button onclick="goTo('scene2')">Open Invitation</button>
+    </div>
+</div>
+
+<!-- SCENE 2 -->
+<div id="scene2" class="scene">
+    <div class="container">
+        <h1>What do you feel like eating?</h1>
+        <p>Pick your birthday craving 🍽️</p>
+
+        <button onclick="chooseFood('Ramen')">🍜 Ramen</button>
+        <button onclick="chooseFood('Burgers')">🍔 Burgers</button>
+        <button onclick="chooseFood('Chicken')">🍗 Chicken</button>
+        <button onclick="chooseFood('Pork')">🐷 Pork</button>
+        <button onclick="chooseFood('Beef')">🥩 Beef</button>
+    </div>
+</div>
+
+<!-- FINAL -->
+<div id="final" class="scene">
+    <div class="container box">
+        <h1>It’s a Date, Juno 💌</h1>
+        <p id="resultText"></p>
+    </div>
+</div>
+
+<script>
+
+function goTo(scene) {
+    changeScene(scene);
+}
+
+function changeScene(id) {
+    let scenes = document.querySelectorAll('.scene');
+
+    scenes.forEach(s => s.classList.remove('active'));
+
+    setTimeout(() => {
+        document.getElementById(id).classList.add('active');
+    }, 200);
+}
+
+function chooseFood(food) {
+    let text = `
+You picked <b>${food}</b> 🍽️<br><br>
+
+🕗 Time: 8:00 PM<br>
+👔 Dress code: pogi<br><br>
+
+I’ll be waiting for you, Juno.<br>
+Don’t overthink it. Just come.
+`;
+
+    document.getElementById("resultText").innerHTML = text;
+
+    changeScene("final");
+}
+
+</script>
+
+</body>
+</html>
