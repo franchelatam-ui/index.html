@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Juno's Birthday Date Night 💌</title>
+<title>Juno Date Sim 💌</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet">
 
@@ -14,6 +14,23 @@ body {
     background: #fff7fb;
     text-align: center;
     color: #333;
+    overflow-x: hidden;
+}
+
+/* HEARTS */
+.heart {
+    position: fixed;
+    top: -10px;
+    color: #ff6fae;
+    font-size: 20px;
+    animation: fall linear forwards;
+    opacity: 0.7;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh);
+    }
 }
 
 /* PAGES */
@@ -36,16 +53,6 @@ body {
     box-shadow: 0 10px 25px rgba(0,0,0,0.05);
 }
 
-/* TEXT */
-h1 {
-    color: #d46a9a;
-}
-
-p {
-    font-size: 16px;
-    line-height: 1.6;
-}
-
 /* BUTTONS */
 .btn {
     display: block;
@@ -53,13 +60,11 @@ p {
     max-width: 320px;
     margin: 12px auto;
     padding: 16px;
-    font-size: 17px;
     border-radius: 18px;
     border: 2px solid #d46a9a;
     background: white;
     color: #d46a9a;
     cursor: pointer;
-    transition: 0.3s;
 }
 
 .btn:hover {
@@ -67,17 +72,23 @@ p {
     color: white;
 }
 
-/* GALLERY */
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    margin-top: 20px;
+/* TICKET */
+.ticket {
+    border: 2px dashed #d46a9a;
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 15px;
+    animation: pop 0.6s ease;
 }
 
-.gallery img {
-    width: 100%;
-    border-radius: 12px;
+@keyframes pop {
+    from {transform: scale(0.8); opacity: 0;}
+    to {transform: scale(1); opacity: 1;}
+}
+
+/* TYPE TEXT */
+#typeText {
+    min-height: 60px;
 }
 </style>
 </head>
@@ -91,15 +102,11 @@ p {
         <h1>💌 A Special Invitation</h1>
 
         <p>
-            Hey Daddy…<br><br>
-            June 6, 2026 💖<br>
-            I made something for your special day.
+            Hey Daddy…<br>
+            June 6, 2026 💖
         </p>
 
-        <button class="btn" onclick="acceptInvite()">💌 I accept the invitation</button>
-
-        <button class="btn" onclick="playMusic()">🎵 Play our music on Spotify</button>
-
+        <button class="btn" onclick="startTyping()">💌 I accept the invitation</button>
     </div>
 </div>
 
@@ -107,18 +114,11 @@ p {
 <div id="page2" class="page">
     <div class="card">
 
-        <h1>💖 Message for you</h1>
+        <h1>💖 Message</h1>
 
-        <p>
-            You said yes 😌<br><br>
-            I love you daddy 💕<br>
-            I can’t wait to see you on your 32nd birthday.<br><br>
-            I hope you feel loved, relaxed, and special.<br><br>
-            Now choose your food hehe 🍽️
-        </p>
+        <p id="typeText"></p>
 
         <button class="btn" onclick="goTo('page3')">Continue</button>
-
     </div>
 </div>
 
@@ -126,13 +126,16 @@ p {
 <div id="page3" class="page">
     <div class="card">
 
-        <h1>🍽️ Choose your food</h1>
+        <h1>🎟️ Birthday Ticket</h1>
 
-        <button class="btn" onclick="choose('Ramen')">🍜 Ramen</button>
-        <button class="btn" onclick="choose('Burgers')">🍔 Burgers</button>
-        <button class="btn" onclick="choose('Chicken')">🍗 Chicken</button>
-        <button class="btn" onclick="choose('Pork')">🐷 Pork</button>
-        <button class="btn" onclick="choose('Beef')">🥩 Beef</button>
+        <div class="ticket">
+            <p><b>Name:</b> Juno</p>
+            <p><b>Date:</b> June 6, 2026</p>
+            <p><b>Time:</b> 8:00 PM</p>
+            <p><b>Dress Code:</b> pogi</p>
+        </div>
+
+        <button class="btn" onclick="goTo('page4')">Final Surprise</button>
 
     </div>
 </div>
@@ -141,41 +144,57 @@ p {
 <div id="page4" class="page">
     <div class="card">
 
-        <h1>📸 Memory Gallery</h1>
+        <h1>💌 Ending</h1>
 
-        <div class="gallery">
-            <img src="207300e0-a7eb-4654-aa1d-e7513e7191a9.jpg">
-            <img src="image_2026-05-28_044953987.png">
-            <img src="image_2026-05-28_045303775.png">
-            <img src="image_2026-05-28_045322390.png">
-            <img src="image_2026-05-28_045328572.png">
-        </div>
+        <p>
+            I can’t wait to see you, daddy 💖<br><br>
+            I love you so much.<br>
+            Ang galing-galing mo 😌
+        </p>
 
     </div>
 </div>
 
 <script>
 
-function acceptInvite() {
-    goTo('page2');
-}
+/* 🎀 HEARTS */
+function hearts() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (2 + Math.random() * 3) + "s";
+    document.body.appendChild(heart);
 
-function playMusic() {
-    window.open("https://open.spotify.com/track/77uHMAuHcP2VKDvF9LXtGt?si=aa805888be4c4958", "_blank");
+    setTimeout(() => heart.remove(), 5000);
 }
+setInterval(hearts, 300);
 
-/* FIXED NAVIGATION (more stable) */
+/* 💌 PAGE SWITCH */
 function goTo(page) {
-    document.querySelectorAll('.page').forEach(p => {
-        p.classList.remove('active');
-    });
-
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById(page).classList.add('active');
 }
 
-function choose(food) {
-    alert("You chose " + food + " 💖");
-    goTo("page4");
+/* ✍️ TYPE MESSAGE */
+function startTyping() {
+    goTo('page2');
+
+    const text = "I’m really happy I get to spend this birthday with you daddy 💖 I hope you feel loved, relaxed, and special. I can’t wait for 8PM with you.";
+    
+    let i = 0;
+    let speed = 40;
+
+    function type() {
+        if (i < text.length) {
+            document.getElementById("typeText").innerHTML += text.charAt(i);
+            i++;
+            setTimeout(type, speed);
+        }
+    }
+
+    document.getElementById("typeText").innerHTML = "";
+    type();
 }
 
 </script>
